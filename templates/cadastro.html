@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} Smart Reservoir | Cadastro de Usuário {% endblock %}</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/login.css'%}" />
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="login-container">
+      <form class="login-box" action="#">
+        <h1 class="login-title">Cadastro</h1>
+
+        <!-- <label for="user">Nome de usuário</label> -->
+        <input
+        class="login-user"
+        type="text"
+        id="user"
+        placeholder="Nome de usuário"
+        required
+        />
+        
+        <!-- <label for="email">E-mail</label> -->
+        <input
+        class="login-email"
+        type="email"
+        id="email"
+        placeholder="usuario@email.com"
+        required
+        />
+        
+        <!-- <label for="cpf">CPF</label> -->
+        <input
+        class="login-cpf"
+        type="number"
+        id="cpf"
+        placeholder="000.000.000-00"
+        required
+        />
+        
+        <!-- <label for="tel">Telefone</label> -->
+        <input
+        class="login-phone"
+        type="tel"
+        id="tel"
+        placeholder="(88) 99999-99999"
+        required
+        />
+        
+        <!-- <label for="password">Senha</label> -->
+        <input
+          class="login-password"
+          type="password"
+          id="password"
+          placeholder="*********"
+          required
+        />
+
+        <button class="login-btn" type="submit">Cadastrar</button>
+
+        <a class="login-recovery-password" href="{% url 'login' %}">Já tenho uma conta! Entrar</a>
+      </form>
+
+      <div class="login-img-box">
+        <img
+          class="login-img"
+          src="{% static 'img/img-login.png' %}"
+          alt="Login Image"
+        />
+      </div>
+    </div>
+  </body>
+</html>

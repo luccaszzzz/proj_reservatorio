@@ -6,5 +6,8 @@ def home(request):
 def login(request):
     return render(request, 'login.html')
 
+def cadastro(request):
+    return render(request, 'cadastro.html')
+
 def gestor(request):
     return render(request, 'gestor.html')

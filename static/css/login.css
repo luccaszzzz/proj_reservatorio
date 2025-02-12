@@ -53,6 +53,9 @@ body{
 }
 
 .login-user,
+.login-email,
+.login-cpf,
+.login-phone,
 .login-password{
     background-color: #5271ff29;
     border: none; 
@@ -61,6 +64,10 @@ body{
     padding: 15px;
 } 
 
+.login-user,
+.login-email,
+.login-cpf,
+.login-phone,
 .login-password{
     margin-top: 10px;
 }
