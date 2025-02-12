@@ -1,0 +1,67 @@
+body {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Centraliza a tela de login verticalmente */
+}  
+
+.login-container {  
+    width: 320px; /* Melhor largura para responsividade */  
+    padding: 20px;  
+    background: #fff;  
+    border-radius: 8px;  
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
+    text-align: center;  
+}  
+
+form {  
+    display: flex;  
+    flex-direction: column;  
+}  
+
+.form-group {  
+    margin-bottom: 15px;  
+    text-align: left;
+}  
+
+label {  
+    margin-bottom: 5px;  
+    font-weight: bold;  
+    display: block;
+}  
+
+input {  
+    width: 100%;  
+    padding: 10px;  
+    border: 1px solid #ccc;  
+    border-radius: 4px;  
+}  
+
+button {  
+    background-color: #007C92;  
+    color: white;  
+    border: none;  
+    padding: 10px;  
+    border-radius: 5px;  
+    cursor: pointer;  
+    display: block;  
+    width: 100%;  
+    font-size: 16px;
+}  
+
+button:hover {  
+    background-color: #005B66;  
+}  
+
+.message {  
+    margin-top: 15px;  
+}  
+
+.message a {  
+    color: #007C92;  
+    text-decoration: none;  
+}  
+
+.message a:hover {  
+    text-decoration: underline;  
+}
