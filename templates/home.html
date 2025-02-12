@@ -1,11 +1,100 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Smart Reservoir - Monitoramento de Caixa d'Água</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
   </head>
   <body>
-    <h1>Clara feinha</h1>
+    <header>
+      <div class="logo">
+        <h1>Smart Reservoir</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#suporte">Suporte/Instalação</a></li>
+          <li><a href="#">Entrar</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="inicio" class="info">
+        <h2>Bem-vindo ao Smart Reservoir!</h2>
+        <p>
+          Nosso sistema é projetado para que você economize água e gerencie seu
+          reservatório com total eficiência! Com recursos inovadores e um design
+          amigável, você terá tudo que precisa na palma da sua mão.
+        </p>
+        <h2>Recursos Principais</h2>
+        <div class="feature">
+          <span>📊</span>
+          <p>Monitoramento em tempo real de nível de água e consumo.</p>
+        </div>
+        <div class="feature">
+          <span>💧</span>
+          <p>Alertas automáticos quando o nível estiver baixo.</p>
+        </div>
+        <div class="feature">
+          <span>📱</span>
+          <p>Acesso fácil pelo celular em qualquer lugar.</p>
+        </div>
+        <div class="feature">
+          <span>🔒</span>
+          <p>Segurança dos nossos usuários em primeiro lugar.</p>
+        </div>
+      </section>
+
+      <section id="sobre" class="info">
+        <h2>Sobre Nós</h2>
+        <p>
+          A Smart Reservoir é dedicada a oferecer soluções eficientes para o
+          monitoramento de água. Nossa missão é proporcionar aos nossos usuários
+          uma forma simplificada e eficaz de cuidar de seus recursos hídricos,
+          garantindo sustentabilidade e economia.
+        </p>
+      </section>
+
+      <section id="servicos" class="info">
+        <h2>Serviços</h2>
+        <p>
+          Oferecemos uma gama de serviços, incluindo instalação do sistema de
+          monitoramento, suporte técnico, manutenção e consultoria sobre o uso
+          eficaz de água. Nossa equipe está pronta para ajudar você em cada
+          passo do caminho.
+        </p>
+      </section>
+
+      <section id="suporte" class="info">
+        <h2>Suporte/Instalação</h2>
+        <p>
+          Nosso suporte técnico está disponível para ajudá-lo a instalar e
+          configurar seu sistema Smart Reservoir. Se você tiver alguma dúvida ou
+          precisar de assistência, entre em contato conosco!
+        </p>
+      </section>
+
+      <section class="cta">
+        <h2>Pronto para começar?</h2>
+        <p>Entre em contato e crie sua conta agora mesmo!</p>
+        <a
+          id="whatsapp-button"
+          href="https://api.whatsapp.com/send?phone=5511999999999&text=Olá!%20Gostaria%20de%20criar%20uma%20conta%20no%20sistema%20Smart%20Reservoir!"
+          target="_blank"
+          >Criar Conta no WhatsApp</a
+        >
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Smart Reservoir - Sistema de Monitoramento de Caixa d'Água</p>
+    </footer>
+
+    <script src="./static/js/script.js"></script>
   </body>
 </html>
