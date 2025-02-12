@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} Smart Reservoir | Perfil {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/perfil.css'%}" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1>Smart Reservoir</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Início</a></li>
+          <li><a href="{% url 'gestor' %}">Gestão</a></li>
+          <li><a href="#">Olá, Maria</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="perfil" class="info">
+        <h2>Perfil do Usuário</h2>
+
+        <h3>Informações Pessoais</h3>
+        <form id="perfil-form">
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" name="nome" value="Seu Nome" required />
+
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value="seu.email@exemplo.com"
+            required
+          />
+
+          <label for="telefone">Telefone:</label>
+          <input
+            type="tel"
+            id="telefone"
+            name="telefone"
+            value="(11) 99999-9999"
+            required
+          />
+
+          <h3>Configurações do Sistema</h3>
+          <label for="notificacoes">Notificações:</label>
+          <select id="notificacoes" name="notificacoes">
+            <option value="sim">Ativar</option>
+            <option value="nao">Desativar</option>
+          </select>
+
+          <button type="submit">Salvar Alterações</button>
+        </form>
+      </section>
+
+      <section id="historico" class="info">
+        <h2>Histórico de Uso</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Nível de Água</th>
+              <th>Consumo</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>05/02/2025</td>
+              <td>80%</td>
+              <td>150 Litros</td>
+              <td>Normal</td>
+            </tr>
+            <tr>
+              <td>04/02/2025</td>
+              <td>100%</td>
+              <td>200 Litros</td>
+              <td>Normal</td>
+            </tr>
+            <tr>
+              <td>03/02/2025</td>
+              <td>75%</td>
+              <td>180 Litros</td>
+              <td>Baixo</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Smart Reservoir - Sistema de Monitoramento de Caixa d'Água</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

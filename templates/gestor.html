@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Painel de Administração - Smart Reservoir</title>
+    <title>{% block title %} Smart Reservoir | Painel de Gestão {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css'%}" />
     <link rel="stylesheet" href="{% static 'css/gestor.css'%}" />
   </head>
@@ -16,9 +16,8 @@
       <nav>
         <ul>
           <li><a href="{% url 'home' %}">Início</a></li>
-          <li><a href="perfil.html">Perfil</a></li>
+          <li><a href="{% url 'perfil' %}">Perfil</a></li>
           <li><a href="#gerenciar-usuarios">Gerenciar Usuários</a></li>
-          <li><a href="#estatisticas">Estatísticas</a></li>
           <li><a href="#">Olá, Maria</a></li>
         </ul>
       </nav>

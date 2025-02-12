@@ -9,5 +9,8 @@ def login(request):
 def cadastro(request):
     return render(request, 'cadastro.html')
 
+def perfil(request):
+    return render(request, 'perfil.html')
+
 def gestor(request):
     return render(request, 'gestor.html')
