@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel de Administração - Smart Reservoir</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/gestor.css'%}" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1>Smart Reservoir</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Início</a></li>
+          <li><a href="perfil.html">Perfil</a></li>
+          <li><a href="#gerenciar-usuarios">Gerenciar Usuários</a></li>
+          <li><a href="#estatisticas">Estatísticas</a></li>
+          <li><a href="#">Olá, Maria</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="gerenciar-usuarios" class="info">
+        <h2>Gerenciar Usuários</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>João Silva</td>
+              <td>joao.silva@exemplo.com</td>
+              <td>Ativo</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Maria Oliveira</td>
+              <td>maria.oliveira@exemplo.com</td>
+              <td>Ativo</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Carlos Souza</td>
+              <td>carlos.souza@exemplo.com</td>
+              <td>Desativado</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="estatisticas" class="info">
+        <h2>Estatísticas de Uso</h2>
+        <p>Total de Usuários: <strong>100</strong></p>
+        <p>Consumo Médio de Água: <strong>150 Litros/dia</strong></p>
+        <p>Nível Médio de Reservatório: <strong>75%</strong></p>
+
+        <h3>Uso por Usuário</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Consumo</th>
+              <th>Nível de Água</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>João Silva</td>
+              <td>180 Litros</td>
+              <td>60%</td>
+            </tr>
+            <tr>
+              <td>Maria Oliveira</td>
+              <td>200 Litros</td>
+              <td>50%</td>
+            </tr>
+            <tr>
+              <td>Carlos Souza</td>
+              <td>140 Litros</td>
+              <td>80%</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Smart Reservoir - Sistema de Monitoramento de Caixa d'Água</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -17,8 +17,9 @@
           <li><a href="#inicio">Início</a></li>
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#suporte">Suporte/Instalação</a></li>
+          <li><a href="#suporte">Suporte e Instalação</a></li>
           <li><a href="{% url 'login' %}">Entrar</a></li>
+          <li><a href="{% url 'gestor' %}">Olá, Maria</a></li>
         </ul>
       </nav>
     </header>
@@ -71,11 +72,17 @@
       </section>
 
       <section id="suporte" class="info">
-        <h2>Suporte/Instalação</h2>
-        <p>
+        <h2>Suporte e Instalação</h2>
+        <p class="suporte-texto">
           Nosso suporte técnico está disponível para ajudá-lo a instalar e
           configurar seu sistema Smart Reservoir. Se você tiver alguma dúvida ou
-          precisar de assistência, entre em contato conosco!
+          precisar de assistência, entre em contato conosco! 
+          
+          <a
+            class="suporte-link"
+            href="https://api.whatsapp.com/send?phone=5584991318818&text=Olá!%20Gostaria%20de%20tirar%20uma%20dúvida%20sobre%20o%20sistema%20Smart%20Reservoir!"
+            target="_blank"
+          >Suporte</a>
         </p>
       </section>
 
