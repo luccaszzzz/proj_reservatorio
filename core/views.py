@@ -17,3 +17,6 @@ def gestor(request):
 
 def usuario_listar(request):
     return render(request, 'usuario_listar.html')
+
+def reservatorio_listar(request):
+    return render(request, 'reservatorio_listar.html')

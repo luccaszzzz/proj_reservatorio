@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from core.views import home, login, cadastro, perfil, gestor, usuario_listar
+from core.views import home, login, cadastro, perfil, gestor, usuario_listar, reservatorio_listar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -13,4 +13,5 @@ urlpatterns = [
     path('gestor/', gestor, name="gestor"),
 
     path('usuario_listar/', usuario_listar, name="usuario_listar"),
+    path('reservatorio_listar/', reservatorio_listar, name="reservatorio_listar"),
 ]
