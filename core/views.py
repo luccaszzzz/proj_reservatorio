@@ -14,3 +14,6 @@ def perfil(request):
 
 def gestor(request):
     return render(request, 'gestor.html')
+
+def usuario_listar(request):
+    return render(request, 'usuario_listar.html')
