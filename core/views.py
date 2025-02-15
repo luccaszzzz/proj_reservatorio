@@ -23,3 +23,9 @@ def reservatorio_listar(request):
 
 def monitoramento_listar(request):
     return render(request, 'monitoramento_listar.html')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
+def detalhe_reservatorio(request):
+    return render(request, 'detalhe_reservatorio.html')
