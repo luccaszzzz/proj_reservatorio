@@ -20,3 +20,6 @@ def usuario_listar(request):
 
 def reservatorio_listar(request):
     return render(request, 'reservatorio_listar.html')
+
+def monitoramento_listar(request):
+    return render(request, 'monitoramento_listar.html')
