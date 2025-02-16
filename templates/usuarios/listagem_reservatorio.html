@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>RESERVATÓRIO</h1>
+    <h2>Listagem do Reservatório:</h2>
+    {% for reservatorio in  listagem_reservatorios%}
+    <p>Código: {{ reservatorio.codigo}}</p>
+    <p>Senha: {{ reservatorio.senha}}</p>
+    <p>Tempo: {{ reservatorio.tempo}}</p>
+    {% empty %}
+    <p>Não existem reservatórios cadastrados! </p>
+    {% endfor %}
+
+</body>
+</html>
