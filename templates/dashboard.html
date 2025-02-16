@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>  
+<html lang="pt-BR">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Dashboard - Smart Reservoir</title>  
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">  
+    <link rel="stylesheet" href="{% static 'css/dashboard.css'%}">  
+    <!-- Adicionando uma biblioteca para gráficos -->  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
+</head>  
+<body>  
+    <header>  
+        <div class="logo">  
+            <h1>Smart Reservoir</h1>  
+        </div>  
+        <nav>  
+            <ul>  
+                <li><a href="{% url 'home' %}">Início</a></li>  
+                <li><a href="{% url 'gestor' %}">Gestão</a></li>  
+                <li><a href="{% url 'perfil' %}">Perfil</a></li>  
+                <li><a href="#">Olá, Maria</a></li>   
+            </ul>  
+        </nav>  
+    </header>  
+
+    <main>  
+        <section id="resumo" class="info">  
+            <h2>Resumo do Sistema</h2> 
+            <div class="card">  
+                <h3>Consumo Diário</h3>  
+                <p><strong>150 Litros</strong></p>  
+            </div>  
+            <div class="card">  
+                <h3>Nível do Reservatório</h3>  
+                <p><strong>75%</strong></p>  
+            </div>   
+        </section>  
+
+        <section id="graficos" class="info">  
+            <h2>Gráficos de Uso</h2>  
+            <canvas id="consumoChart"></canvas>  
+            <canvas id="nivelChart"></canvas>  
+        </section>  
+    </main>  
+
+    <footer>  
+        <p>© 2025 Smart Reservoir - Sistema de Monitoramento de Caixa d'Água</p>  
+    </footer>  
+    
+    <script src="script.js"></script>  
+
+    <script>  
+        // Configurações para o gráfico de consumo  
+        const consumoCtx = document.getElementById('consumoChart').getContext('2d');  
+        const consumoChart = new Chart(consumoCtx, {  
+            type: 'line',  
+            data: {  
+                labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],  
+                datasets: [{  
+                    label: 'Consumo de Água (Litros)',  
+                    data: [120, 150, 180, 200, 160, 130, 190],  
+                    borderColor: 'rgba(0, 124, 146, 1)',  
+                    backgroundColor: 'rgba(0, 124, 146, 0.2)',  
+                    borderWidth: 2  
+                }]  
+            },  
+            options: {  
+                responsive: true,  
+                scales: {  
+                    y: {  
+                        beginAtZero: true,  
+                        title: {  
+                            display: true,  
+                            text: 'Litros'  
+                        }  
+                    }  
+                }  
+            }  
+        });  
+
+        // Configurações para o gráfico de nível  
+        const nivelCtx = document.getElementById('nivelChart').getContext('2d');  
+        const nivelChart = new Chart(nivelCtx, {  
+            type: 'bar',  
+            data: {  
+                labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],  
+                datasets: [{  
+                    label: 'Nível do Reservatório (%)',  
+                    data: [80, 75, 70, 60, 65, 70, 85],  
+                    backgroundColor: 'rgba(0, 124, 146, 0.6)',  
+                    borderColor: 'rgba(0, 124, 146, 1)',  
+                    borderWidth: 1  
+                }]  
+            },  
+            options: {  
+                responsive: true,  
+                scales: {  
+                    y: {  
+                        beginAtZero: true,  
+                        title: {  
+                            display: true,  
+                            text: 'Porcentagem (%)'  
+                        }  
+                    }  
+                }  
+            }  
+        });  
+    </script>  
+</body>  
+</html>

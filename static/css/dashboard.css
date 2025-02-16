@@ -1,0 +1,29 @@
+#resumo {  
+    display: flex;  
+    justify-content: space-between;  
+    margin-bottom: 20px;  
+}  
+
+.card {  
+    flex: 1;  
+    margin: 0 10px;  
+    padding: 20px;  
+    background: #007C92;  
+    color: white;  
+    border-radius: 8px;  
+    text-align: center;  
+}  
+
+.card h3 {  
+    margin: 0 0 10px;  
+}  
+
+#graficos {  
+    margin-top: 20px;  
+}  
+
+canvas {  
+    max-width: 600px;  
+    margin: 0 auto;  
+    display: block; /* Centraliza o gráfico */  
+}  

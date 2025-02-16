@@ -184,13 +184,18 @@
                       Editar</a>
                   </td>
                   <td>
+                    <a class="btn btn-success rounded-pill" href="{% url 'remover_usuario' usuario.id %}">
+                      <i class="bi bi-pencil-square"></i> 
+                      Remover</a>
+                  </td>
+                  <td>
                     <a class="btn btn-primary rounded-pill" href="#">
                       <i class="bi bi-eye"></i> 
                       Acessar
                     </a>
                   </td>
                   <td>
-                    <a class="btn btn-danger rounded-pill" href="{% url 'remover_usuario' usuario.id %}">
+                    <a class="btn btn-danger rounded-pill" href="#">
                       <i class="bi bi-trash3"></i> 
                       Deletar
                     </a>
@@ -225,34 +230,3 @@
     <script src="dashboard.js"></script>
   </body>
 </html>
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>USUÁRIOS</h1>
-    <p><a href="{% url 'cadastrar_usuario'  %}">Cadastrar</a></p>
-    <h2>Listagem de Usuários:</h2>
-    {% for usuario in listagem_usuarios %}
-    <p>
-        Nome: {{usuario.nome}} 
-        Email: {{usuario.email}}  
-        Senha: {{usuario.senha}} 
-        Cpf:{{usuario.cpf}} 
-        Celular:{{usuario.celular}}
-        |<a href="{% url 'editar_usuario' usuario.id %}">EDITAR</a>
-        |<a href="{% url 'remover_usuario' usuario.id %}">REMOVER</a>
-    </p>
-    {% empty %}
-    <p>Não existem usuários cadastrados!</p>
-    {% endfor %}
-
-
-</body>
-</html> -->

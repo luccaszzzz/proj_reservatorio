@@ -17,46 +17,29 @@
         <ul>
           <li><a href="{% url 'home' %}">Início</a></li>
           <li><a href="{% url 'perfil' %}">Perfil</a></li>
-          <li><a href="#gerenciar-usuarios">Gerenciar Usuários</a></li>
+          <li><a href="{% url 'cadastro' %}">Cadastro de Usuário</a></li>
+          <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+          <li><a href="{% url 'detalhe_reservatorio' %}">Detalhe de Reservatório</a></li>
           <li><a href="#">Olá, Maria</a></li>
         </ul>
       </nav>
     </header>
 
     <main>
-      <section id="gerenciar-usuarios" class="info">
-        <h2>Gerenciar Usuários</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>Email</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>João Silva</td>
-              <td>joao.silva@exemplo.com</td>
-              <td>Ativo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Maria Oliveira</td>
-              <td>maria.oliveira@exemplo.com</td>
-              <td>Ativo</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Carlos Souza</td>
-              <td>carlos.souza@exemplo.com</td>
-              <td>Desativado</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+      <section id="resumo" class="info">   
+        <a class="card" href="{% url 'listar_usuarios' %}">  
+            <h3>Geren. de Usuários</h3>  
+            <p><strong>Ativos: 5</strong></p>  
+        </a>  
+        <a class="card" href="{% url 'reservatorio_listar' %}">  
+            <h3>Geren. de Reservatórios</h3>  
+            <p><strong>Ativos: 5</strong></p>  
+        </a>  
+        <a class="card" href="{% url 'monitoramento_listar' %}">  
+            <h3>Geren. de Monitoramento</h3>  
+            <p><strong>Ativos: 5</strong></p>  
+        </a>  
+      </section>  
 
       <section id="estatisticas" class="info">
         <h2>Estatísticas de Uso</h2>

@@ -88,3 +88,18 @@ def perfil(request):
 
 def gestor(request):
     return render(request, 'gestor.html')
+
+def usuario_listar2(request):
+    return render(request, 'usuario_listar2.html')
+
+def reservatorio_listar(request):
+    return render(request, 'reservatorio_listar.html')
+
+def monitoramento_listar(request):
+    return render(request, 'monitoramento_listar.html')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
+def detalhe_reservatorio(request):
+    return render(request, 'detalhe_reservatorio.html')

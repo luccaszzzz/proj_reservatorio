@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>  
+<html lang="pt-BR">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Detalhes do Reservatório - Smart Reservoir</title>  
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">  
+    <link rel="stylesheet" href="{% static 'css/detalhe_reservatorio.css'%}">  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
+</head>  
+<body>  
+    <header>  
+        <div class="logo">  
+            <h1>Smart Reservoir</h1>  
+        </div>  
+        <nav>  
+            <ul>  
+                <li><a href="{% url 'home' %}">Início</a></li>  
+                <li><a href="{% url 'gestor' %}">Gestão</a></li>  
+                <li><a href="{% url 'perfil' %}">Perfil</a></li>  
+                <li><a href="#">Olá, Maria</a></li>   
+            </ul>  
+        </nav>  
+    </header>  
+
+    <main>  
+        <section id="detalhes-reservatorio">  
+            <h2>Detalhes do Reservatório</h2>  
+            <div class="reservatorio-info">  
+                <h3>ID: <span id="reservatorioId">1</span></h3>  
+                <p>Localização: <span id="localizacaoReservatorio">Rua A</span></p>  
+                <p>Capacidade: <span id="capacidadeReservatorio">1000 Litros</span></p>  
+                <p>Nível Atual: <span id="nivelAtual">750 Litros</span></p>  
+                <p>Última Atualização: <span id="dataAtualizacao">2025-02-05</span></p>  
+                <a class="button" href="{% url 'reservatorio_listar' %}">Voltar</a>  
+                <button onclick="editarReservatorio()">Editar</button>  
+                <button onclick="deletarReservatorio()">Deletar</button>  
+            </div>  
+
+            <h3>Consumo do Reservatório</h3>  
+            <div id="consumo-grafico">  
+                <canvas id="consumoChart" width="400" height="200"></canvas>  
+            </div>  
+        </section>  
+    </main>  
+
+    <footer>  
+        <p>© 2025 Smart Reservoir - Sistema de Monitoramento de Caixa d'Água</p>  
+    </footer>  
+    
+    <script>  
+        // Função para editar o reservatório  
+        function editarReservatorio() {  
+            const id = document.getElementById('reservatorioId').innerText;  
+            window.location.href = 'editar-reservatorio.html?id=' + id;  
+        }  
+
+        // Função para deletar o reservatório  
+        function deletarReservatorio() {  
+            if (confirm("Tem certeza que deseja deletar este reservatório?")) {  
+                console.log("Reservatório deletado.");   
+                // Aqui você deve adicionar a lógica para deletar o reservatório do sistema  
+            }  
+        }  
+
+        // Configuração do gráfico de consumo  
+        const ctx = document.getElementById('consumoChart').getContext('2d');  
+        const consumoChart = new Chart(ctx, {  
+            type: 'line', // Tipo do gráfico (linha)  
+            data: {  
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'], // Meses fictícios  
+                datasets: [{  
+                    label: 'Consumo (Litros)',  
+                    data: [500, 300, 450, 700, 600], // Dados de consumo fictícios  
+                    backgroundColor: 'rgba(0, 123, 255, 0.2)',  
+                    borderColor: 'rgba(0, 123, 255, 1)',  
+                    borderWidth: 2,  
+                    fill: true // preenche a área abaixo da linha  
+                }]  
+            },  
+            options: {  
+                responsive: true, // gráfico responsivo  
+                scales: {  
+                    y: {  
+                        beginAtZero: true,  
+                        title: {  
+                            display: true,  
+                            text: 'Litros consumidos' // Título do eixo Y  
+                        }  
+                    },  
+                    x: {  
+                        title: {  
+                            display: true,  
+                            text: 'Meses' // Título do eixo X  
+                        }  
+                    }  
+                }  
+            }  
+        });  
+    </script>  
+</body>  
