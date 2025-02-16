@@ -72,17 +72,20 @@ body{
     margin-top: 10px;
 }
 
-.login-btn{
-    background-color: #007C92; 
-    border: none; 
-    border-radius: 5px; 
-    color: #fff;
-    cursor: pointer; 
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-top: 20px; 
-    padding: 10px;
-}
+.login-btn {  
+    display: inline-block; /* assegura que o link se comporte como um botão */  
+    background-color: #007C92;   
+    border: none;   
+    border-radius: 5px;   
+    color: #fff;  
+    cursor: pointer;   
+    font-size: 1.2rem;  
+    font-weight: bold;  
+    margin-top: 20px;   
+    padding: 10px 15px;  
+    text-align: center; 
+    text-decoration: none;  
+}  
 
 .login-btn:hover{
     background-color: #25D366;
