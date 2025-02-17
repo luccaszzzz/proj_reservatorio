@@ -1,50 +1,72 @@
-#perfil-form {  
-    display: flex;  
-    flex-direction: column;  
-}  
+#perfil-form {
+  display: flex;
+  flex-direction: column;
+}
 
-#perfil-form label {  
-    margin: 10px 0 5px;  
-}  
+#perfil-form label {
+  margin: 10px 0 5px;
+}
 
-#perfil-form input,  
-#perfil-form select {  
-    padding: 10px;  
-    border-radius: 5px;  
-    border: 1px solid #ccc;  
-}  
+#perfil-form input,
+#perfil-form select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
 
-#perfil-form button {  
-    padding: 10px;  
-    background: #007C92;  
-    color: white;  
-    border: none;  
-    border-radius: 5px;  
-    margin-top: 15px;  
-    cursor: pointer;  
-}  
+#perfil-form button {
+  padding: 10px;
+  background: #007c92;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 15px;
+  cursor: pointer;
+}
 
-#perfil-form button:hover {  
-    background: #004f54;  
-}  
+#perfil-form button:hover {
+  background: #004f54;
+}
 
-table {  
-    width: 100%;  
-    border-collapse: collapse;  
-    margin-top: 20px;  
-}  
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
 
-table, th, td {  
-    border: 1px solid #ccc;  
-    text-align: left;  
-    padding: 10px;  
-}  
+table,
+th,
+td {
+  border: 1px solid #ccc;
+  text-align: left;
+  padding: 10px;
+}
 
-th {  
-    background-color: #007C92;  
-    color: white;  
-}  
+th {
+  background-color: #007c92;
+  color: white;
+}
 
-tbody tr:nth-child(even) {  
-    background-color: #f2f2f2; /* Altera a cor das linhas pares */  
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2; /* Altera a cor das linhas pares */
+}
+
+form p {
+  margin: 10px 0;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form select {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }

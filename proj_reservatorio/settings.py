@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'autenticacao.CustomUser' # Informa ao Django para usar o modelo CustomUser em vez do modelo padrão User
 
 # Application definition
 
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'autenticacao',
 ]
 
 MIDDLEWARE = [
