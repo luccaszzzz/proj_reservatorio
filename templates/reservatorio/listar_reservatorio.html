@@ -7,11 +7,15 @@
 </head>
 <body>
     <h1>RESERVATÓRIO</h1>
+    <p><a href="{% url 'cadastrar_reservatorio' %}">Cadastrar</a></p>
     <h2>Listagem do Reservatório:</h2>
     {% for reservatorio in  listagem_reservatorios%}
     <p>Código: {{ reservatorio.codigo}}</p>
     <p>Senha: {{ reservatorio.senha}}</p>
     <p>Tempo: {{ reservatorio.tempo}}</p>
+    |<a href="{% url 'editar_reservatorio' reservatorio.id %}">EDITAR</a>
+    | <a href="{% url 'remover_reservatorio' reservatorio.id %}">REMOVER</a>
+
     {% empty %}
     <p>Não existem reservatórios cadastrados! </p>
     {% endfor %}

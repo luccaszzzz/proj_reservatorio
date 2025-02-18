@@ -1,11 +1,22 @@
 from django.db import models 
+from django.contrib.auth.models import User 
+# POSSÍVEL SOLUÇÃO DO PROBLEMA DE CADASTRO DE RESERVATÓRIO
 
-class Usuario(models.Model):    
+
+class Usuario(models.Model):  
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # POSSÍVEL SOLUÇÃO DO PROBLEMA DE CADASTRO DE RESERVATÓRIO
+
     nome = models.CharField(max_length=100)  
     email = models.EmailField(unique=True)  
     senha = models.CharField(max_length=128)  
     cpf = models.CharField(max_length=11, unique=True)  
-    celular = models.CharField(max_length=15)  
+    celular = models.CharField(max_length=15) 
+
+    def __str__(self):    
+        return self.user.username
+    # POSSÍVEL SOLUÇÃO DO PROBLEMA DE CADASTRO DE RESERVATÓRIO
 
     def __str__(self):    
         return self.nome  # Retorna o nome do usuário como representação do objeto
@@ -23,7 +34,7 @@ class Reservatorio(models.Model):
     ])  
     
     # Relacionamento com o modelo Usuario, definindo que cada reservatório pertence a um usuário  
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)  
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE,null=True, blank=True)  
 
     def __str__(self):  
         return self.codigo  
