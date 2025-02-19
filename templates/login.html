@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,56 +23,36 @@
         />
       </div>
 
-      <form class="login-box" action="#">
+      <form class="login-box" method="post">
+        {% csrf_token %}
         <h1 class="login-title">Login</h1>
 
         <input
           class="login-user"
           type="text"
-          id="user"
+          name="username"
           placeholder="Nome de usuário"
           required
         />
         <input
           class="login-password"
           type="password"
-          id="password"
+          name="password"
           placeholder="Senha"
           required
         />
 
         <button class="login-btn" type="submit">Entrar</button>
 
-        <!-- Para uma próxima versão (Login com redes sociais) -->
-        <!-- <div class="login-social">
-                <p class="login-social-text">Entrar com</p>
+        {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
+          <p class="{{ message.tags }}">{{ message }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
 
-                <div class="login-social-items">
-                    <a class="login-social-link" href="#">
-                        <img class="login-social-img" src="{% static 'img/google.svg' %}" alt="Google Logo">
-                    </a>
-
-                    <a class="login-social-link" href="#">
-                        <img class="login-social-img" src="{% static 'img/facebook.svg' %}" alt="Facebook Logo">
-                    </a>
-
-                    <a class="login-social-link" href="#">
-                        <img class="login-social-img" src="{% static 'img/github.svg' %}" alt="Github Logo">
-                    </a>
-                </div>
-            </div> -->
-
-        <a
-          class="login-recovery-password"
-          href="https://api.whatsapp.com/send?phone=5584991318818&text=Olá!%20Gostaria%20de%20recuperar%20a%20minha%20senha!"
-          target="_blank"
-          >Esqueceu sua senha?</a
-        >
-
-        <a
-          class="login-register"
-          href="https://api.whatsapp.com/send?phone=5584991318818&text=Olá!%20Gostaria%20de%20criar%20uma%20conta%20no%20sistema%20Smart%20Reservoir!"
-          target="_blank"
+        <a class="login-recovery-password" href="{% url 'cadastro' %}"
           >Não tem uma conta? Registre-se</a
         >
       </form>

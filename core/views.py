@@ -6,6 +6,35 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
 
+def home(request):
+    return render(request, 'home.html')
+
+def login(request):
+    return render(request, 'login.html')
+
+def cadastro(request):
+    return render(request, 'cadastro.html')
+
+def perfil(request):
+    return render(request, 'perfil.html')
+
+def gestor(request):
+    return render(request, 'gestor.html')
+
+def usuario_listar2(request):
+    return render(request, 'usuario_listar2.html')
+
+def reservatorio_listar(request):
+    return render(request, 'reservatorio_listar.html')
+
+def monitoramento_listar(request):
+    return render(request, 'monitoramento_listar.html')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
+def detalhe_reservatorio(request):
+    return render(request, 'cadastro.html')
 
 # não sei se isto está certo - passo 2 de Bruno -  LOGIN REGISTRAR USUÁRIO - 13/02
 # o código abaixo foi preenchido automaticamente - 13/02 - passo 2 de Bruno
@@ -81,7 +110,7 @@ def cadastrar_reservatorio(request):
         if request.user.is_authenticated:
             try:
                 # Obtém o usuário logado
-                usuario_logado = Usuario.objects.get(email=request.user.email)
+                usuario_logado = Usuario.objects.get(email=request.user.email) 
                 reservatorio.usuario = usuario_logado
             except ObjectDoesNotExist:
                 # Caso o usuário logado não tenha um objeto Usuario correspondente
@@ -135,34 +164,4 @@ def remover_reservatorio(request,id):
 
 #     return render(request, 'reservatorio/cadastrar_reservatorio.html',contexto)
 
-
-
-def home(request):
-    return render(request, 'home.html')
-
-def login(request):
-    return render(request, 'login.html')
-
-def cadastro(request):
-    return render(request, 'cadastro.html')
-
-def perfil(request):
-    return render(request, 'perfil.html')
-
-def gestor(request):
-    return render(request, 'gestor.html')
-
-def usuario_listar2(request):
-    return render(request, 'usuario_listar2.html')
-
-def reservatorio_listar(request):
-    return render(request, 'reservatorio_listar.html')
-
-def monitoramento_listar(request):
-    return render(request, 'monitoramento_listar.html')
-
-def dashboard(request):
-    return render(request, 'dashboard.html')
-
-def detalhe_reservatorio(request):
-    return render(request, 'detalhe_reservatorio.html')
+    # return render(request, 'detalhe_reservatorio.html')

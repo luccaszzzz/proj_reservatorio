@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Usuario(models.Model):  
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    #user = models.OneToOneField(User, on_delete=models.CASCADE)
     # POSSÍVEL SOLUÇÃO DO PROBLEMA DE CADASTRO DE RESERVATÓRIO
 
     nome = models.CharField(max_length=100)  
@@ -17,10 +17,10 @@ class Usuario(models.Model):
     def __str__(self):    
         return self.user.username
     # POSSÍVEL SOLUÇÃO DO PROBLEMA DE CADASTRO DE RESERVATÓRIO
-
+    '''
     def __str__(self):    
         return self.nome  # Retorna o nome do usuário como representação do objeto
-
+    '''
 class Reservatorio(models.Model):   
     codigo = models.CharField(max_length=50, unique=True)  
     senha = models.CharField(max_length=128)  

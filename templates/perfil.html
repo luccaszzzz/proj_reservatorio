@@ -17,7 +17,8 @@
         <ul>
           <li><a href="{% url 'home' %}">Início</a></li>
           <li><a href="{% url 'gestor' %}">Gestão</a></li>
-          <li><a href="#">Olá, Maria</a></li>
+          <li><a href="#">Olá, {{ user.username }}</a></li>
+          <!-- Exibe o nome do usuário -->
         </ul>
       </nav>
     </header>
@@ -29,15 +30,21 @@
         <h3>Informações Pessoais</h3>
         <form id="perfil-form">
           <label for="nome">Nome:</label>
-          <input type="text" id="nome" name="nome" value="Seu Nome" required />
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            value="{{ user.username }}" {% comment %} Exibe o nome de usuário {% endcomment %}
+            required 
+          />
 
           <label for="email">Email:</label>
           <input
             type="email"
             id="email"
             name="email"
-            value="seu.email@exemplo.com"
-            required
+            value="{{ user.email }}" {% comment %} Exibe o email do usuário {% endcomment %}
+            required 
           />
 
           <label for="telefone">Telefone:</label>
@@ -45,8 +52,8 @@
             type="tel"
             id="telefone"
             name="telefone"
-            value="(11) 99999-9999"
-            required
+            value="{{ user.telefone }}" {% comment %} Exibe o telefone do usuário {% endcomment %}
+            required 
           />
 
           <h3>Configurações do Sistema</h3>
