@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>MONITORAMENTO</h1>
+    <p><a href="{% url 'cadastrar_monitoramento' %}">Cadastrar</a></p>
+    <h2>Listagem de Monitoramento:</h2>
+    {% for monitoramento in todos_monitoramentos %}
+    <p>Data e Hora:{{monitoramento.data_hora}}</p>
+    <p>Volume:{{monitoramento.volume}}</p>
+    <p>Reservatório:{{monitoramento.reservatorio}}</p>
+    | <a href="{% url 'editar_monitoramento' monitoramento.id %}">EDITAR</a>
+    | <a href="{% url 'remover_monitoramento' monitoramento.id %}">REMOVER</a>
+    
+    {% empty %}
+    <p>Não existem monitoramentos cadastrados! </p>
+    {% endfor %}
+</body>
+</html>

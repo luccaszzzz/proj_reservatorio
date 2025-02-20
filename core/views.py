@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect #adicionado dia 13/02 pela vídeo aula de Bruno passo 2 CADASTRAR USUÁRIO
 # from .models import Usuario #adicionado dia 13/02 pela vídeo aula de Bruno passo 1 LOGIN REGISTRAR USUÁRIO
-from  .forms import UsuarioForm, ReservatorioForm #adicionado dia 13/02 pela vídeo aula de Bruno passo 2 CADASTRAR USUÁRIO
-from .models import Reservatorio,Usuario #adicionado dia 14/02 pela vídeo aula de Bruno passo 1 LISTAGEM DE RESERVATÓRIO
+from  .forms import UsuarioForm, ReservatorioForm, MonitoramentoForm #adicionado dia 13/02 pela vídeo aula de Bruno passo 2 CADASTRAR USUÁRIO
+from .models import Reservatorio,Usuario, Monitoramento #adicionado dia 14/02 pela vídeo aula de Bruno passo 1 LISTAGEM DE RESERVATÓRIO
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -144,6 +144,46 @@ def remover_reservatorio(request,id):
     reservatorio = Reservatorio.objects.get(pk=id)
     reservatorio.delete()
     return redirect('listar_reservatorio')
+
+
+
+#CRUD DE MONITORAMENTO
+def listar_monitoramento(request):
+    monitoramento = Monitoramento.objects.all()
+    contexto = {    
+        'todos_monitoramentos': monitoramento
+    }
+    return render(request, 'monitoramento/listar_monitoramento.html', contexto)
+
+def cadastrar_monitoramento(request):
+    form = MonitoramentoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('listar_monitoramento')
+    contexto = {
+        'form_monitoramento': form
+    }
+    return render(request, 'monitoramento/cadastrar_monitoramento.html', contexto)
+
+def editar_monitoramento(request,id):
+    monitoramento = Monitoramento.objects.get(pk=id)
+    form = MonitoramentoForm(request.POST or None, instance=monitoramento)
+    if form.is_valid():
+        form.save()
+        return redirect('listar_monitoramento')
+    contexto = {
+        'form_monitoramento': form
+    }
+    return render(request, 'monitoramento/cadastrar_monitoramento.html',contexto)
+
+def remover_monitoramento(request,id):
+    monitoramento = Monitoramento.objects.get(pk=id)
+    monitoramento.delete()
+    return redirect('listar_monitoramento')
+
+
+
+
 
 
 
