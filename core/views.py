@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect #adicionado dia 13/02 pela vídeo aula de Bruno passo 2 CADASTRAR USUÁRIO
 # from .models import Usuario #adicionado dia 13/02 pela vídeo aula de Bruno passo 1 LOGIN REGISTRAR USUÁRIO
 from  .forms import UsuarioForm, ReservatorioForm, MonitoramentoForm #adicionado dia 13/02 pela vídeo aula de Bruno passo 2 CADASTRAR USUÁRIO
-from .models import Reservatorio,Usuario, Monitoramento #adicionado dia 14/02 pela vídeo aula de Bruno passo 1 LISTAGEM DE RESERVATÓRIO
+from .models import Usuario, Reservatorio, Monitoramento #adicionado dia 14/02 pela vídeo aula de Bruno passo 1 LISTAGEM DE RESERVATÓRIO
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -23,15 +23,6 @@ def perfil2(request):
 
 def gestor(request):
     return render(request, 'gestor.html')
-
-def usuario_listar2(request):
-    return render(request, 'usuario_listar2.html')
-
-def reservatorio_listar(request):
-    return render(request, 'reservatorio_listar.html')
-
-def monitoramento_listar(request):
-    return render(request, 'monitoramento_listar.html')
 
 def dashboard(request):
     return render(request, 'dashboard.html')
@@ -149,7 +140,6 @@ def remover_reservatorio(request,id):
     return redirect('listar_reservatorio')
 
 
-
 #CRUD DE MONITORAMENTO
 def listar_monitoramento(request):
     monitoramento = Monitoramento.objects.all()
@@ -183,12 +173,6 @@ def remover_monitoramento(request,id):
     monitoramento = Monitoramento.objects.get(pk=id)
     monitoramento.delete()
     return redirect('listar_monitoramento')
-
-
-
-
-
-
 
 # @login_required  # Garante que apenas usuários logados possam acessar essa view
 # def cadastrar_reservatorio(request):
