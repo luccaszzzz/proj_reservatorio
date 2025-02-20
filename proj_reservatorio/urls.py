@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from core.views import home, login, cadastro, perfil, gestor, usuario_listar2, reservatorio_listar, monitoramento_listar, dashboard, detalhe_reservatorio, cadastrar_usuario, listar_usuarios,editar_usuario,remover_usuario # BASEADO NO VÍDEO DE BRUNO - passo 1 - ADICIONEI "cadastrar_usuario" e "listar_usuarios" e "editar_usuario" e "remover_usuario"
+from core.views import home, login, cadastro, perfil, perfil2, gestor, usuario_listar2, reservatorio_listar, monitoramento_listar, dashboard, detalhe_reservatorio, cadastrar_usuario, listar_usuarios,editar_usuario,remover_usuario # BASEADO NO VÍDEO DE BRUNO - passo 1 - ADICIONEI "cadastrar_usuario" e "listar_usuarios" e "editar_usuario" e "remover_usuario"
 from core.views import listar_reservatorio, cadastrar_reservatorio, editar_reservatorio, remover_reservatorio # BASEADO NO VÍDEO DE BRUNO - passo 1 - ADICIONEI "listar_reservatorio", "cadastrar_reservatorio" e "editar_reservatorio"
 
 urlpatterns = [
@@ -11,6 +11,7 @@ urlpatterns = [
     path('cadastro/', cadastro, name="cadastro"),
     
     path('perfil/', perfil, name="perfil"),
+    path('perfil2/', perfil2, name="perfil2"),
     path('gestor/', gestor, name="gestor"),
 
     path('usuario_listar2/', usuario_listar2, name="usuario_listar2"),

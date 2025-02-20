@@ -18,6 +18,9 @@ def cadastro(request):
 def perfil(request):
     return render(request, 'perfil.html')
 
+def perfil2(request):
+    return render(request, 'perfil2.html')
+
 def gestor(request):
     return render(request, 'gestor.html')
 
