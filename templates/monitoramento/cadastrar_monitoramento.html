@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar monitoramento</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+</head>
+<body>
+
+    <h1>CADASTRAR MONITORAMENTO</h1>
+    <form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="id_data_hora">Data e Hora:</label>
+        {{ form_monitoramento.data_hora }}
+    </div>
+
+    {{ form_monitoramento.volume.label_tag }} {{ form_monitoramento.volume }}<br>
+    {{ form_monitoramento.reservatorio.label_tag }} {{ form_monitoramento.reservatorio }}<br>
+
+    <!--{{ form_monitoramento }}>-->
+    <p><input type="submit" value="Cadastrar"/></p>
+
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script><script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Inicializa o Flatpickr no campo data_hora
+        flatpickr("#id_data_hora", {
+            enableTime: true, // Habilita o seletor de hora
+            dateFormat: "Y-m-d H:i", // Formato da data e hora
+            locale: "pt", // Define o idioma como português (opcional)
+        });
+    </script>
+
+
+</body>
+</html>

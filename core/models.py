@@ -39,6 +39,7 @@ class Reservatorio(models.Model):
     def __str__(self):  
         return self.codigo  
 
+
 class Monitoramento(models.Model):   
     data_hora = models.DateTimeField()  
     volume = models.FloatField()   
