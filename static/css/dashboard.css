@@ -1,29 +1,48 @@
-#resumo {  
-    display: flex;  
-    justify-content: space-between;  
-    margin-bottom: 20px;  
-}  
+.bi {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+}
 
-.card {  
-    flex: 1;  
-    margin: 0 10px;  
-    padding: 20px;  
-    background: #007C92;  
-    color: white;  
-    border-radius: 8px;  
-    text-align: center;  
-}  
+/*
+ * Sidebar
+ */
 
-.card h3 {  
-    margin: 0 0 10px;  
-}  
+@media (min-width: 768px) {
+  .sidebar .offcanvas-lg {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 48px;
+  }
+  .navbar-search {
+    display: block;
+  }
+}
 
-#graficos {  
-    margin-top: 20px;  
-}  
+.sidebar .nav-link {
+  font-size: .875rem;
+  font-weight: 500;
+}
 
-canvas {  
-    max-width: 600px;  
-    margin: 0 auto;  
-    display: block; /* Centraliza o gráfico */  
-}  
+.sidebar .nav-link.active {
+  color: #2470dc;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  background-color: rgba(0, 0, 0, .25);
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+
+.navbar .form-control {
+  padding: .75rem 1rem;
+}
