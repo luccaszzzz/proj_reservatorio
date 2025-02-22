@@ -4,9 +4,9 @@
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Detalhes do Reservatório - Smart Reservoir</title>  
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">  
-    <link rel="stylesheet" href="{% static 'css/detalhe_reservatorio.css'%}">  
+    <title>{% block title %} Smart Reservoir | Detalhe do Reservatório {% endblock %}</title>  
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">  
+    <link rel="stylesheet" href="{% static 'css/detalhe_reservatorio.css' %}">  
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
 </head>  
 <body>  
@@ -19,7 +19,7 @@
                 <li><a href="{% url 'home' %}">Início</a></li>  
                 <li><a href="{% url 'gestor' %}">Gestão</a></li>  
                 <li><a href="{% url 'perfil' %}">Perfil</a></li>  
-                <li><a href="#">Olá, Maria</a></li>   
+                <li><a href="#">Olá, {{ user.username }}</a></li>   
             </ul>  
         </nav>  
     </header>  
@@ -28,12 +28,12 @@
         <section id="detalhes-reservatorio">  
             <h2>Detalhes do Reservatório</h2>  
             <div class="reservatorio-info">  
-                <h3>ID: <span id="reservatorioId">1</span></h3>  
-                <p>Localização: <span id="localizacaoReservatorio">Rua A</span></p>  
-                <p>Capacidade: <span id="capacidadeReservatorio">1000 Litros</span></p>  
-                <p>Nível Atual: <span id="nivelAtual">750 Litros</span></p>  
-                <p>Última Atualização: <span id="dataAtualizacao">2025-02-05</span></p>  
-                <a class="button" href="{% url 'reservatorio_listar' %}">Voltar</a>  
+                <h3>ID: <span id="reservatorioId">{{ reservatorio.id }}</span></h3>  
+                <p>Código: <span id="codigoReservatorio">{{ reservatorio.codigo }}</span></p>  
+                <p>Tempo: <span id="tempoReservatorio">{{ reservatorio.tempo }} min</span></p>  
+                <p>Periodicidade: <span id="periodicidadeReservatorio">{{ reservatorio.get_periodicidade_display }}</span></p>  
+                <p>Senha: <span id="senhaReservatorio">{{ reservatorio.senha }}</span></p>  
+                <a class="button" href="{% url 'listar_reservatorios' %}">Voltar</a>
                 <button onclick="editarReservatorio()">Editar</button>  
                 <button onclick="deletarReservatorio()">Deletar</button>  
             </div>  
@@ -53,14 +53,20 @@
         // Função para editar o reservatório  
         function editarReservatorio() {  
             const id = document.getElementById('reservatorioId').innerText;  
-            window.location.href = 'editar-reservatorio.html?id=' + id;  
+            window.location.href = "{% url 'editar_reservatorio' reservatorio.id %}";  
         }  
 
         // Função para deletar o reservatório  
         function deletarReservatorio() {  
             if (confirm("Tem certeza que deseja deletar este reservatório?")) {  
-                console.log("Reservatório deletado.");   
-                // Aqui você deve adicionar a lógica para deletar o reservatório do sistema  
+                const id = document.getElementById('reservatorioId').innerText;  
+                fetch(`/reservatorio/deletar/${id}/`, {  
+                    method: 'DELETE',  
+                }).then(response => {  
+                    if (response.ok) {  
+                        window.location.href = "{% url 'listar_reservatorios' %}";  
+                    }  
+                });  
             }  
         }  
 
@@ -100,3 +106,4 @@
         });  
     </script>  
 </body>  
+</html>

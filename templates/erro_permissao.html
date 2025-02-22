@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acesso Negado</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Smart Reservoir</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Início</a></li>
+                <li><a href="{% url 'login' %}">Entrar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="erro">
+            <h2>Acesso Negado</h2>
+            <p>Você não tem permissão para acessar esta página.</p>
+            <a href="{% url 'home' %}" class="button">Voltar para a página inicial</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Smart Reservoir - Sistema de Monitoramento de Caixa d'Água</p>
+    </footer>
+</body>
+</html>

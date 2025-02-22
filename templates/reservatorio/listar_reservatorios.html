@@ -128,7 +128,7 @@
             >
             <!-- <a class="btn-lg" href="{% url 'home' %}"><i class="bi bi-arrow-left"></i></a> -->
 
-            <a class="btn btn-primary rounded-pill" href="{% url 'perfil2' %}">
+            <a class="btn btn-primary rounded-pill" href="{% url 'perfil' %}">
               <i class="bi bi-arrow-left"></i>
             </a>
             
@@ -182,10 +182,10 @@
                       Editar</a>
                   </td>
                   <td>
-                    <a class="btn btn-primary rounded-pill" href="{% url 'detalhe_reservatorio' %}">
+                    <a class="btn btn-primary rounded-pill" href="{% url 'detalhe_reservatorio' reservatorio.id %}">
                       <i class="bi bi-eye"></i> 
                       Acessar
-                    </a>
+                  </a>
                   </td>
                   <td>
                     <a class="btn btn-danger rounded-pill" href="{% url 'remover_reservatorio' reservatorio.id %}">
@@ -198,7 +198,7 @@
                 <tr>
                   <td class="text-center" colspan="9">
                     <div class="alert alert-danger" role="alert">
-                      Nenhum usuário cadastrado
+                      Nenhum Reservatório(s) cadastrado
                     </div>
                   </td>
                 </tr>

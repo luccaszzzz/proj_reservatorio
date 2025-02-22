@@ -1,10 +1,7 @@
-from django.shortcuts import render, redirect #adicionado dia 13/02 pela vídeo aula de Bruno passo 2 CADASTRAR USUÁRIO
-# from .models import Usuario #adicionado dia 13/02 pela vídeo aula de Bruno passo 1 LOGIN REGISTRAR USUÁRIO
-from  .forms import UsuarioForm, ReservatorioForm, MonitoramentoForm #adicionado dia 13/02 pela vídeo aula de Bruno passo 2 CADASTRAR USUÁRIO
-from .models import Usuario, Reservatorio, Monitoramento #adicionado dia 14/02 pela vídeo aula de Bruno passo 1 LISTAGEM DE RESERVATÓRIO
-from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ObjectDoesNotExist
-
+from django.shortcuts import render, redirect, get_object_or_404 # adicionado dia 13/02 pela vídeo aula de Bruno passo 2 CADASTRAR USUÁRIO
+from  .forms import UsuarioForm, ReservatorioForm, MonitoramentoForm # adicionado dia 13/02 pela vídeo aula de Bruno passo 2 CADASTRAR USUÁRIO
+from .models import Usuario, Reservatorio, Monitoramento # adicionado dia 14/02 pela vídeo aula de Bruno passo 1 LISTAGEM DE RESERVATÓRIO
+from django.core.exceptions import ObjectDoesNotExist # Importa uma exceção para caso um objeto não foi encontrado no banco de dados
 
 def home(request):
     return render(request, 'home.html')
@@ -27,8 +24,8 @@ def gestor(request):
 def dashboard(request):
     return render(request, 'dashboard.html')
 
-def detalhe_reservatorio(request):
-    return render(request, 'cadastro.html')
+def erro_permissao(request):
+    return render(request, 'erro_permissao.html')
 
 # não sei se isto está certo - passo 2 de Bruno -  LOGIN REGISTRAR USUÁRIO - 13/02
 # o código abaixo foi preenchido automaticamente - 13/02 - passo 2 de Bruno
@@ -50,7 +47,7 @@ def listar_usuarios(request):
     contexto = {
         'listagem_usuarios': usuarios
     }
-    return render(request, 'usuarios/listagem_usuarios.html', contexto)
+    return render(request, 'usuarios/listar_usuarios.html', contexto)
     
 # BASEADO NO VÍDEO DE BRUNO - passo 2 - CADASTRO de usuário
 def cadastrar_usuario(request):
@@ -62,7 +59,6 @@ def cadastrar_usuario(request):
         'form_usuario': form
     }
     return render(request, 'usuarios/usuario_cadastrar.html', contexto)
-
 
 # BASEADO NO VÍDEO DE BRUNO - passo 3 - EDIÇÃO de usuário
 def editar_usuario(request,id):
@@ -76,25 +72,22 @@ def editar_usuario(request,id):
         }
     return render(request,'usuarios/usuario_cadastrar.html',contexto)
 
-
 # BASEADO NO VÍDEO DE BRUNO - passo 4 - REMOÇÃO de usuário
-def remover_usuario(request,id):
+def remover_usuario(request, id):
     usuario = Usuario.objects.get(pk=id)
     usuario.delete()
     return redirect('listar_usuarios')
 
-
 # BASEADO NO VÍDEO DE BRUNO - passo 1 -LISTAGEM de RESERVATÓRIO
-def listar_reservatorio(request):
+def listar_reservatorios(request):
     reservatorio = Reservatorio.objects.all()
     contexto = {
         'listagem_reservatorios': reservatorio
     }
-    return render(request, 'reservatorio/listar_reservatorio.html', contexto)
-
+    return render(request, 'reservatorio/listar_reservatorios.html', contexto)
 
 #CRUD DE RESERVATÓRIOS
- # Garante que apenas usuários logados possam acessar essa view
+# Garante que apenas usuários logados possam acessar essa view
 def cadastrar_reservatorio(request):
     form = ReservatorioForm(request.POST or None)
     if form.is_valid():
@@ -115,7 +108,7 @@ def cadastrar_reservatorio(request):
             pass
 
         reservatorio.save()  # Salva o reservatório no banco de dados
-        return redirect('listar_reservatorio')  # Redireciona para a lista de reservatórios
+        return redirect('listar_reservatorios')  # Redireciona para a lista de reservatórios
 
     contexto = {
         'form_reservatorio': form
@@ -128,7 +121,7 @@ def editar_reservatorio(request,id):
     form = ReservatorioForm(request.POST or None, instance=reservatorio)
     if form.is_valid():
         form.save()
-        return redirect('listar_reservatorio')
+        return redirect('listar_reservatorios')
     contexto = {
         'form_reservatorio': form
     }
@@ -137,22 +130,25 @@ def editar_reservatorio(request,id):
 def remover_reservatorio(request,id):
     reservatorio = Reservatorio.objects.get(pk=id)
     reservatorio.delete()
-    return redirect('listar_reservatorio')
+    return redirect('listar_reservatorios')
 
+def detalhe_reservatorio(request, id):
+    reservatorio = get_object_or_404(Reservatorio, id=id) # Usa get_object_or_404 para lidar com o erro
+    return render(request, 'reservatorio/detalhe_reservatorio.html', {'reservatorio': reservatorio})
 
 #CRUD DE MONITORAMENTO
-def listar_monitoramento(request):
+def listar_monitoramentos(request):
     monitoramento = Monitoramento.objects.all()
     contexto = {    
         'todos_monitoramentos': monitoramento
     }
-    return render(request, 'monitoramento/listar_monitoramento.html', contexto)
+    return render(request, 'monitoramento/listar_monitoramentos.html', contexto)
 
 def cadastrar_monitoramento(request):
     form = MonitoramentoForm(request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect('listar_monitoramento')
+        return redirect('listar_monitoramentos')
     contexto = {
         'form_monitoramento': form
     }
@@ -163,16 +159,16 @@ def editar_monitoramento(request,id):
     form = MonitoramentoForm(request.POST or None, instance=monitoramento)
     if form.is_valid():
         form.save()
-        return redirect('listar_monitoramento')
+        return redirect('listar_monitoramentos')
     contexto = {
         'form_monitoramento': form
     }
     return render(request, 'monitoramento/cadastrar_monitoramento.html',contexto)
 
 def remover_monitoramento(request,id):
-    monitoramento = Monitoramento.objects.get(pk=id)
+    monitoramento = get_object_or_404(Monitoramento, pk=id) # Usa get_object_or_404 para lidar com o erro
     monitoramento.delete()
-    return redirect('listar_monitoramento')
+    return redirect('listar_monitoramentos')
 
 # @login_required  # Garante que apenas usuários logados possam acessar essa view
 # def cadastrar_reservatorio(request):
