@@ -10,6 +10,10 @@
 </head>
 <body>
     <div class="login-container">
+        <div class="login-img-box">
+          <img class="login-img" src="{% static 'img/img-login.png' %}" alt="Imagem de Cadastro" />
+        </div>
+
         <form class="login-box" method="post">
           {% csrf_token %}
           <h1 class="login-title">Login</h1>
