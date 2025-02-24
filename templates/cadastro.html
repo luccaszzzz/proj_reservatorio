@@ -15,16 +15,57 @@
   </head>
   <body>
     <div class="login-container">
-      <form class="login-box" method="post">
-        {% csrf_token %}
+      <form class="login-box" action="#">
         <h1 class="login-title">Cadastro</h1>
 
-        <!-- Renderiza os campos do formulário -->
-        {{ form.as_p }}
+        <!-- <label for="user">Nome de usuário</label> -->
+        <input
+        class="login-user"
+        type="text"
+        id="user"
+        placeholder="Nome de usuário"
+        required
+        />
+        
+        <!-- <label for="email">E-mail</label> -->
+        <input
+        class="login-email"
+        type="email"
+        id="email"
+        placeholder="usuario@email.com"
+        required
+        />
+        
+        <!-- <label for="cpf">CPF</label> -->
+        <input
+        class="login-cpf"
+        type="number"
+        id="cpf"
+        placeholder="000.000.000-00"
+        required
+        />
+        
+        <!-- <label for="tel">Telefone</label> -->
+        <input
+        class="login-phone"
+        type="tel"
+        id="tel"
+        placeholder="(88) 99999-99999"
+        required
+        />
+        
+        <!-- <label for="password">Senha</label> -->
+        <input
+          class="login-password"
+          type="password"
+          id="password"
+          placeholder="*********"
+          required
+        />
 
         <button class="login-btn" type="submit">Cadastrar</button>
 
-        <a class="login-recovery-password" href="{% url 'login' %}">Já tem uma conta? Entrar</a>
+        <a class="login-recovery-password" href="{% url 'login' %}">Já tenho uma conta! Entrar</a>
       </form>
 
       <div class="login-img-box">
