@@ -20,7 +20,7 @@
           <li><a href="{% url 'cadastro' %}">Cadastro de Usuário</a></li>
           <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
           <li><a href="{% url 'detalhe_reservatorio' %}">Detalhe de Reservatório</a></li>
-          <li><a href="#">Olá, Maria</a></li>
+          <li><a href="#">Olá, {{ user.username }}</a></li>
         </ul>
       </nav>
     </header>
