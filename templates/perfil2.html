@@ -241,8 +241,7 @@
                 <li class="nav-item">
                 <a class="nav-link d-flex align-items-center gap-2" aria-current="page" href="#">
                     <i class="bi bi-person-circle mb-1"></i>
-                    <!-- Olá, {{ user.username }} -->
-                    Olá, Maria
+                    Olá, {{ user.username }}
                 </a>
                 </li>
                 <li class="nav-item">
@@ -367,8 +366,7 @@
                 
             <img class="text" src="{% static 'img/perfil.png' %}" alt="Imagem de Usuário" style="max-width: 140px;"/>
                 
-            <!-- <p class="mt-4">Olá, {{ user.username }}</p> -->
-            <p class="mt-4">Olá, Maria</p>
+            <p class="mt-4">Olá, {{ user.username }}</p>
             <!-- <p>
             <a href="#" class="link-offset-2 link-underline link-underline-opacity-0">
                 Editar dados
@@ -380,24 +378,24 @@
             
         <ul class="list-group">
           <li class="list-group-item">
-            <!-- <strong>Nome:</strong> {{ user.first_name }} -->
-            <strong>Nome:</strong> Maria Oliveira
+            <strong>Nome:</strong> {{ user.first_name }}
+            <!-- <strong>Nome:</strong> Maria Oliveira -->
           </li>
           <li class="list-group-item">
-            <!-- <strong>Email:</strong> {{ user.email }} -->
-            <strong>Email:</strong> maria.oliveira@gmail.com
+            <strong>Email:</strong> {{ user.email }}
+            <!-- <strong>Email:</strong> maria.oliveira@gmail.com -->
           </li> 
           <li class="list-group-item">
-            <!-- <strong>CPF:</strong> {{ user.userprofile.cpf }} -->
-            <strong>CPF:</strong> 11122233344
+            <strong>CPF:</strong> {{ user.userprofile.cpf }}
+            <!-- <strong>CPF:</strong> 11122233344 -->
           </li>
           <li class="list-group-item">
-              <!-- <strong>Celular:</strong> {{ user.userprofile.telefone }} -->
-              <strong>Celular:</strong> 84999999990
+              <strong>Celular:</strong> {{ user.userprofile.telefone }}
+              <!-- <strong>Celular:</strong> 84999999990 -->
           </li>
           <li class="list-group-item">
-              <!-- <strong>Senha:</strong> {{ user.userprofile.endereco }} -->
-              <strong>Senha:</strong> 123456
+              <strong>Senha:</strong> {{ user.userprofile.endereco }}
+              <!-- <strong>Senha:</strong> 123456 -->
           </li>     
         </ul>
         </main>
