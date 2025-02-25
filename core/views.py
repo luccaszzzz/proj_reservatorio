@@ -3,6 +3,20 @@ from  .forms import UsuarioForm, ReservatorioForm, MonitoramentoForm # adicionad
 from .models import Usuario, Reservatorio, Monitoramento # adicionado dia 14/02 pela vídeo aula de Bruno passo 1 LISTAGEM DE RESERVATÓRIO
 from django.core.exceptions import ObjectDoesNotExist # Importa uma exceção para caso um objeto não foi encontrado no banco de dados
 
+import requests
+import json
+from django.http import HttpResponse, JsonResponse
+
+# VIEW PARA EXPRESS
+def my_view(request):
+    requisicao = requests.post('http://127.0.0.1:3000/usuarios/list')
+    todos = json.loads(requisicao.content)
+    return JsonResponse(todos, safe=False)
+
+
+def teste (request):
+    return render(request, 'teste.html')
+
 def home(request):
     return render(request, 'home.html')
 

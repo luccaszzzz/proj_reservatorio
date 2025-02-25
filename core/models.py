@@ -1,14 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser, Group, Permission
 
-class Usuario(models.Model):  
-    nome = models.CharField(max_length=100)  
-    email = models.EmailField(unique=True)  
-    senha = models.CharField(max_length=128)  
+class Usuario(AbstractUser):  
+
     cpf = models.CharField(max_length=11, unique=True)  
     celular = models.CharField(max_length=15) 
 
+    groups = models.ManyToManyField(Group, related_name="usuario_groups", blank=True)
+    user_permissions = models.ManyToManyField(Permission, related_name="usuario_permissions", blank=True)
+
     def __str__(self):    
-        return self.user.username
+        return self.username
 
 class Reservatorio(models.Model):   
     codigo = models.CharField(max_length=50, unique=True)  

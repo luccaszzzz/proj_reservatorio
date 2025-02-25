@@ -5,8 +5,8 @@ from .models import Usuario, Reservatorio, Monitoramento
 
 @admin.register(Usuario)
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'email', 'cpf', 'celular')
-    search_fields = ('nome', 'email', 'cpf')
+    list_display = ('username', 'email', 'cpf', 'celular')
+    search_fields = ('username', 'email', 'cpf')
 
 @admin.register(Reservatorio)
 class ReservatorioAdmin(admin.ModelAdmin):

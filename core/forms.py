@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 class UsuarioForm(ModelForm):
      class Meta:
           model = Usuario
-          fields = ['nome', 'email', 'senha', 'cpf','celular']
+          fields = ['username', 'email', 'password', 'cpf','celular']
 
 class ReservatorioForm(ModelForm):
      class Meta:
