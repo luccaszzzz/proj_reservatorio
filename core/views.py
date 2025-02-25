@@ -42,12 +42,18 @@ def erro_permissao(request):
 
 
 # BASEADO NO VÍDEO DE BRUNO - passo 1 -LISTAGEM de usuário
-def listar_usuarios(request):
-    usuarios = Usuario.objects.all()
-    contexto = {
-        'listagem_usuarios': usuarios
-    }
-    return render(request, 'usuarios/listar_usuarios.html', contexto)
+def listar_usuarios(request):  
+    query = request.GET.get('search', '')  
+    if query:  
+        usuarios = Usuario.objects.filter(nome__icontains=query)  # Supondo que "nome" seja um campo do modelo  
+    else:  
+        usuarios = Usuario.objects.all()  
+    
+    contexto = {  
+        'listagem_usuarios': usuarios,  
+        'search_query': query  # Para enviar de volta o termo de busca ao template, se necessário  
+    }  
+    return render(request, 'usuarios/listar_usuarios.html', contexto) 
     
 # BASEADO NO VÍDEO DE BRUNO - passo 2 - CADASTRO de usuário
 def cadastrar_usuario(request):
@@ -79,11 +85,17 @@ def remover_usuario(request, id):
     return redirect('listar_usuarios')
 
 # BASEADO NO VÍDEO DE BRUNO - passo 1 -LISTAGEM de RESERVATÓRIO
-def listar_reservatorios(request):
-    reservatorio = Reservatorio.objects.all()
-    contexto = {
-        'listagem_reservatorios': reservatorio
-    }
+def listar_reservatorios(request):  
+    query = request.GET.get('search', '')  
+    if query:  
+        reservatorio = Reservatorio.objects.filter(codigo__icontains=query)  # Supondo que "codigo" seja um campo do modelo  
+    else:  
+        reservatorio = Reservatorio.objects.all()  
+
+    contexto = {  
+        'listagem_reservatorios': reservatorio,  
+        'search_query': query  # Para manter o termo de busca no template  
+    }  
     return render(request, 'reservatorio/listar_reservatorios.html', contexto)
 
 #CRUD DE RESERVATÓRIOS
@@ -137,11 +149,17 @@ def detalhe_reservatorio(request, id):
     return render(request, 'reservatorio/detalhe_reservatorio.html', {'reservatorio': reservatorio})
 
 #CRUD DE MONITORAMENTO
-def listar_monitoramentos(request):
-    monitoramento = Monitoramento.objects.all()
-    contexto = {    
-        'todos_monitoramentos': monitoramento
-    }
+def listar_monitoramentos(request):  
+    query = request.GET.get('search', '')  
+    if query:  
+        monitoramento = Monitoramento.objects.filter(data_hora__icontains=query)  # Supondo que "data" seja um campo do modelo  
+    else:  
+        monitoramento = Monitoramento.objects.all()  
+
+    contexto = {  
+        'todos_monitoramentos': monitoramento,  
+        'search_query': query  # Para manter o termo de busca no template  
+    }  
     return render(request, 'monitoramento/listar_monitoramentos.html', contexto)
 
 def cadastrar_monitoramento(request):
