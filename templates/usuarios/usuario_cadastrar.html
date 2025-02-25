@@ -1,16 +1,69 @@
+{% load static %} 
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>CADASTRAR USUÁRIO</h1>
-    <form method="post">
-    {% csrf_token %}
-    {{ form_usuario }}
-    <p><input type="submit" value="Cadastrar"></p>
-</form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block 'title' %} Smart Reservoir | Cadastrar Usuário {% endblock 'title' %}
+    </title>
+    <link
+      rel="shortcut icon"
+      href="{% static 'img/logo-02.webp'%}"
+      type="image/x-icon"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/cadastrar.css' %}" />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- <div class="logo">
+        <a href="{% url 'home'%}">
+          <img
+            src="{% static 'img/logo-02.webp'%}"
+            alt="Logo da Loja"
+            width="100px"
+          />
+        </a>
+      </div> -->
+      <h3 class="texto-logo">Cadastrar Usuário</h3>
+      <form method="post" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="field email-field">Nome</div>
+        <div class="input-field">
+          {{ form_usuario.nome }}
+        </div>
+        <div class="field email-field">E-mail</div>
+        <div class="input-field">
+          {{ form_usuario.email }}
+        </div>
+        <div class="field email-field">CPF</div>
+        <div class="input-field">
+            {{ form_usuario.cpf }}
+        </div>
+        <div class="field email-field">Celular</div>
+        <div class="input-field">
+            {{ form_usuario.celular }}
+        </div>
+        <div class="field email-field">Senha</div>
+        <div class="input-field">
+          {{ form_usuario.senha }}
+        </div>
+        <div class="field button-field input-field">
+            <input type="submit" value="Cadastrar" />
+        </div>
+      </form>
+    </div>
+    <script src="./src/js/login.js"></script>
+  </body>
 </html>
