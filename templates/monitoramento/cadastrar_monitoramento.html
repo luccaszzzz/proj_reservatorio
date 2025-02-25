@@ -1,41 +1,64 @@
+
+{% load static %} 
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} Smart Reservoir | Cadastrar Monitoramento {% endblock %}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block 'title' %} Smart Reservoir | Cadastrar Monitoramento {% endblock 'title' %}
+    </title>
+    <link
+      rel="shortcut icon"
+      href="{% static 'img/logo-02.webp'%}"
+      type="image/x-icon"
+    />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="{% static 'css/cadastrar.css' %}" />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
 
-</head>
-<body>
-
-    <h1>CADASTRAR MONITORAMENTO</h1>
-    <form method="post">
-    {% csrf_token %}
-    <div>
-        <label for="id_data_hora">Data e Hora:</label>
-        {{ form_monitoramento.data_hora }}
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h3 class="texto-logo">Cadastrar Monitoramento</h3>
+      <form method="post" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="field data-hora-field">Data e Hora</div>
+        <div class="input-field">
+          {{ form_monitoramento.data_hora }}
+        </div>
+        <div class="field volume-field">Volume</div>
+        <div class="input-field">
+          {{ form_monitoramento.volume }}
+        </div>
+        <div class="field reservatorio">Reservatorio</div>
+        <div class="input-field">
+            {{ form_monitoramento.reservatorio }}
+        </div>
+        <div class="field button-field input-field">
+            <input type="submit" value="Cadastrar" />
+        </div>
+      </form>
     </div>
-
-    {{ form_monitoramento.volume.label_tag }} {{ form_monitoramento.volume }}<br>
-    {{ form_monitoramento.reservatorio.label_tag }} {{ form_monitoramento.reservatorio }}<br>
-
-    <!--{{ form_monitoramento }}>-->
-    <p><input type="submit" value="Cadastrar"/></p>
-
-    </form>
+    <script src="./src/js/login.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script><script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
+    
+    <!-- <script>
         // Inicializa o Flatpickr no campo data_hora
         flatpickr("#id_data_hora", {
             enableTime: true, // Habilita o seletor de hora
             dateFormat: "Y-m-d H:i", // Formato da data e hora
             locale: "pt", // Define o idioma como português (opcional)
         });
-    </script>
-
-
-</body>
+    </script> -->
+  </body>
 </html>

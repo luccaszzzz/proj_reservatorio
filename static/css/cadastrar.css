@@ -85,6 +85,10 @@ body {
 /* Estilos para inputs de email, senha e confirmação de senha */
 .input-field input[type="text"],
 .input-field input[type="email"],
+.input-field input[type="number"],
+.input-field input[type="datetime-local"],
+.input-field select,
+.input-field input[type="tel"],
 .input-field input[type="password"] {
     /* Estilos para campos de entrada de texto */
     padding: 0 15px;
