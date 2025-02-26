@@ -10,14 +10,14 @@
 </head>
 <body>
     <div class="login-container">
-        <form class="login-box" method="post">
+        <form class="login-box" action="{% url 'cadastro' %}" method="post">
           {% csrf_token %}
           <h1 class="login-title">Cadastro</h1>
       
           <input class="login-user" type="text" name="username" placeholder="Nome de usuário" required />
           <input class="login-email" type="email" name="email" placeholder="E-mail" required />
           <input class="login-cpf" type="text" name="cpf" placeholder="CPF" required />
-          <input class="login-phone" type="tel" name="tel" placeholder="Telefone" required />
+          <input class="login-phone" type="tel" name="cel" placeholder="Celular" required />
           <input class="login-password" type="password" name="password" placeholder="Senha" required />
           <input class="login-password" type="password" name="password2" placeholder="Confirmar Senha" required />
       

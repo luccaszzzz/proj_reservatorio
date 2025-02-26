@@ -2,57 +2,98 @@ from django.shortcuts import render, redirect, get_object_or_404 # adicionado di
 from  .forms import UsuarioForm, ReservatorioForm, MonitoramentoForm # adicionado dia 13/02 pela vídeo aula de Bruno passo 2 CADASTRAR USUÁRIO
 from .models import Usuario, Reservatorio, Monitoramento # adicionado dia 14/02 pela vídeo aula de Bruno passo 1 LISTAGEM DE RESERVATÓRIO
 from django.core.exceptions import ObjectDoesNotExist # Importa uma exceção para caso um objeto não foi encontrado no banco de dados
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
+from django.contrib.auth.hashers import make_password
 import requests
 import json
 from django.http import HttpResponse, JsonResponse
 
-# VIEW PARA EXPRESS
-def my_view(request):
+# VIEWS PARA EXPRESS
+
+def listar_usuarios_express(request):
     requisicao = requests.post('http://127.0.0.1:3000/usuarios/list')
     todos = json.loads(requisicao.content)
     return JsonResponse(todos, safe=False)
 
+# Cadastro de usuario comum no express
+@login_required(login_url='login')
+def cadastrar_usuario_express(request):
+    form = UsuarioForm(request.POST or None)
+    if form.is_valid():
+        usuario = form.save(commit=False)
+        usuario.password = make_password(form.cleaned_data['password'])
+        usuario.save()
 
-def teste (request):
+        # Cadastro no Express
+        usuario_express = {
+            'nome': usuario.username,
+            'email': usuario.email,
+            'password': usuario.password,
+            'cpf': usuario.cpf,
+            'telefone': usuario.celular
+        }
+        requisicao = requests.post('http://127.0.0.1:3000/signup', data=json.dumps(usuario_express), headers={'Content-Type': 'application/json'})
+        return redirect('login')
+    
+    contexto = {
+        'form_usuario': form
+    }
+    return render(request, 'usuarios/usuario_cadastrar.html', contexto)
+
+def atualizar_usuario_express(request):
     return render(request, 'teste.html')
 
+def excluir_usuario_express(request):
+    return render(request, 'teste.html')
+
+# FIM DE VIEWS PARA EXPRESS
+
+def logar(request):
+    if request.user.is_authenticated:
+        return redirect(reverse('perfil2'))
+    if request.POST:
+        username = request.POST.get('username')
+        print(username)
+        senha = request.POST.get('password')
+        usuario = authenticate(request, username=username, password=senha)
+        print(usuario)
+        if usuario is not None:
+            login(request, usuario)
+            return redirect(reverse('perfil2'))
+        return render(request, 'login.html')
+    else:
+        return render(request, 'login.html')
+
+
+def sair(request):
+    logout(request)
+    return redirect('login')
+
+
+@login_required(login_url='login')
 def home(request):
     return render(request, 'home.html')
 
-def login(request):
-    return render(request, 'login.html')
-
-def cadastro(request):
-    return render(request, 'cadastro.html')
-
+@login_required(login_url='login')
 def perfil(request):
     return render(request, 'perfil.html')
 
+@login_required(login_url='login')
 def perfil2(request):
     return render(request, 'perfil2.html')
 
 def gestor(request):
     return render(request, 'gestor.html')
 
+@login_required(login_url='login')
 def dashboard(request):
     return render(request, 'dashboard.html')
 
 def erro_permissao(request):
     return render(request, 'erro_permissao.html')
-
-# não sei se isto está certo - passo 2 de Bruno -  LOGIN REGISTRAR USUÁRIO - 13/02
-# o código abaixo foi preenchido automaticamente - 13/02 - passo 2 de Bruno
-#def registrar_usuario(request):
-   # if request.method == 'POST':
-    #    nome = request.POST.get('nome')
-     #   email = request.POST.get('email')
-      #  senha = request.POST.get('senha')
-       # cpf = request.POST.get('cpf')
-        #celular = request.POST.get('celular')
-        #usuario = Usuario(nome=nome, email=email, senha=senha, cpf=cpf, celular=celular)
-        #usuario.save()
-    #return render(request, 'cadastro.html')
 
 
 # BASEADO NO VÍDEO DE BRUNO - passo 1 -LISTAGEM de usuário
@@ -69,16 +110,18 @@ def listar_usuarios(request):
     }  
     return render(request, 'usuarios/listar_usuarios.html', contexto) 
     
-# BASEADO NO VÍDEO DE BRUNO - passo 2 - CADASTRO de usuário
+# Cadastro para usuário master
 def cadastrar_usuario(request):
-    form = UsuarioForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('listar_usuarios')
-    contexto = {
-        'form_usuario': form
-    }
-    return render(request, 'usuarios/usuario_cadastrar.html', contexto)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        cpf = request.POST.get('cpf')
+        celular = request.POST.get('cel')
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2')
+        usuario = Usuario.objects.create_user(username=username, email=email, cpf=cpf, celular=celular, password=password)
+        return redirect('login')
+    return render(request, 'cadastro.html')
 
 # BASEADO NO VÍDEO DE BRUNO - passo 3 - EDIÇÃO de usuário
 def editar_usuario(request,id):

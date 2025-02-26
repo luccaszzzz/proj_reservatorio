@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html lang="pt-br" data-bs-theme="auto">
   <head><script src="{% static 'js/color-modes.js' %}"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -295,7 +295,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center gap-2" href="{% url 'cadastro' %}">
+                  <a class="nav-link d-flex align-items-center gap-2" href="{% url 'cadastrar_usuario' %}">
                     <i class="bi bi-person-plus-fill mb-1"></i>
                     Cadastro de Usuário
                   </a>
@@ -336,7 +336,7 @@
                     {% csrf_token %}
                     <button type="submit" class="nav-link d-flex align-items-center gap-2" style="background: none; border: none; padding: 0; cursor: pointer; color: inherit;">
                       <svg class="bi"><use xlink:href="#door-closed"/></svg>
-                      Sair
+                      <a href="{% url 'sair' %}">Sair</a>
                     </button>
                   </form>
                 </li>
@@ -350,7 +350,7 @@
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Perfil de Usuário</h1>
-            <a class="nav-link d-flex align-items-center gap-2 text-danger" href="#">
+            <a class="nav-link d-flex align-items-center gap-2 text-danger" href="{% url 'sair' %}">
               <i class="bi bi-box-arrow-right mb-1"></i>  
               Sair do Sistema
             </a>
@@ -378,7 +378,7 @@
             
         <ul class="list-group">
           <li class="list-group-item">
-            <strong>Nome:</strong> {{ user.first_name }}
+            <strong>Nome:</strong> {{ user.username }}
             <!-- <strong>Nome:</strong> Maria Oliveira -->
           </li>
           <li class="list-group-item">
@@ -386,15 +386,15 @@
             <!-- <strong>Email:</strong> maria.oliveira@gmail.com -->
           </li> 
           <li class="list-group-item">
-            <strong>CPF:</strong> {{ user.userprofile.cpf }}
+            <strong>CPF:</strong> {{ user.cpf }}
             <!-- <strong>CPF:</strong> 11122233344 -->
           </li>
           <li class="list-group-item">
-              <strong>Celular:</strong> {{ user.userprofile.telefone }}
+              <strong>Celular:</strong> {{ user.celular }}
               <!-- <strong>Celular:</strong> 84999999990 -->
           </li>
           <li class="list-group-item">
-              <strong>Senha:</strong> {{ user.userprofile.endereco }}
+              <strong>Senha:</strong> {{ user.password }}
               <!-- <strong>Senha:</strong> 123456 -->
           </li>     
         </ul>

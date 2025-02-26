@@ -1,14 +1,16 @@
 from django.contrib import admin
 from django.urls import path
-from core.views import home, login, cadastro, perfil, perfil2, gestor, dashboard, detalhe_reservatorio, cadastrar_usuario, listar_usuarios, editar_usuario, remover_usuario # BASEADO NO VÍDEO DE BRUNO - passo 1 - ADICIONEI "cadastrar_usuario" e "listar_usuarios" e "editar_usuario" e "remover_usuario"
-from core.views import listar_reservatorios, cadastrar_reservatorio, editar_reservatorio, remover_reservatorio # BASEADO NO VÍDEO DE BRUNO - passo 1 - ADICIONEI "listar_reservatorio", "cadastrar_reservatorio" e "editar_reservatorio"
-from core.views import listar_monitoramentos, erro_permissao, cadastrar_monitoramento, editar_monitoramento,remover_monitoramento, my_view, teste# BASEADO NO VÍDEO DE BRUNO - passo 1 - ADICIONEI "listar_monitoramento", "cadastrar_monitoramento" e "editar_monitoramento" e "remover_monitoramento"
+from core.views import home, perfil, perfil2, gestor, dashboard, detalhe_reservatorio, cadastrar_usuario, listar_usuarios, editar_usuario, remover_usuario # BASEADO NO VÍDEO DE BRUNO - passo 1 - ADICIONEI "cadastrar_usuario" e "listar_usuarios" e "editar_usuario" e "remover_usuario"
+from core.views import listar_reservatorios, cadastrar_reservatorio, editar_reservatorio, logar, sair, remover_reservatorio # BASEADO NO VÍDEO DE BRUNO - passo 1 - ADICIONEI "listar_reservatorio", "cadastrar_reservatorio" e "editar_reservatorio"
+from core.views import listar_monitoramentos, erro_permissao, cadastrar_monitoramento, editar_monitoramento,remover_monitoramento, atualizar_usuario_express, listar_usuarios_express, excluir_usuario_express, cadastrar_usuario_express # BASEADO NO VÍDEO DE BRUNO - passo 1 - ADICIONEI "listar_monitoramento", "cadastrar_monitoramento" e "editar_monitoramento" e "remover_monitoramento"
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
-    path('login/', login, name="login"),
-    path('cadastro/', cadastro, name="cadastro"),
+    path('login/', logar, name="login"),
+    path('cadastro/', cadastrar_usuario, name="cadastro"),
+    path('sair/', sair, name="sair"),
     path('perfil/', perfil, name="perfil"),
     path('perfil2/', perfil2, name="perfil2"),
     path('gestor/', gestor, name="gestor"),
@@ -16,7 +18,7 @@ urlpatterns = [
     path('erro_permissao/', erro_permissao, name="erro_permissao"),
 
     # CRUD DE USUÁRIOS 
-    path('cadastrar_usuario/', cadastrar_usuario, name='cadastrar_usuario'), # BASEADO NO VÍDEO DE BRUNO - passo 2 - ADICIONEI a ROTA "cadastrar_usuario"
+    path('cadastrar_usuario/', cadastrar_usuario_express, name='cadastrar_usuario'), # BASEADO NO VÍDEO DE BRUNO - passo 2 - ADICIONEI a ROTA "cadastrar_usuario"
     path('listar_usuarios/', listar_usuarios, name='listar_usuarios'), # BASEADO NO VÍDEO DE BRUNO - passo 2 - CADASTRAR USUARIO - adicionei o "listar_usuarios"
     path('usuario_editar/<int:id>/', editar_usuario, name='editar_usuario'), # BASEADO NO VÍDEO DE BRUNO - passo 3 - EDIÇÃO de usuário
     path('usuario_remover/<int:id>', remover_usuario, name= 'remover_usuario' ),  # BASEADO NO VÍDEO DE BRUNO - passo 4 - REMOÇÃO de usuário
@@ -35,6 +37,8 @@ urlpatterns = [
     path('remover_monitoramento/<int:id>/', remover_monitoramento, name='remover_monitoramento'), # BASEADO NO VÍDEO DE BRUNO - passo 4 - REMOÇÃO de MONITORAMENTO
 
     # URLS PARA EXPRESS
-    path('messages/', my_view, name='messages'),
-    path('teste/', teste, name='teste'),
+    path('listar_usuarios_express/', listar_usuarios_express, name='listar_usuarios_express'),
+    path('excluir_usuario_express/', excluir_usuario_express, name='exluir_usuario_express'),
+    path('cadastrar_usuario_express/', cadastrar_usuario_express, name='cadastrar_usuario_express'),
+    path('atualizar_usuario_express/', atualizar_usuario_express, name='atualizar_usuario_express'),
 ]

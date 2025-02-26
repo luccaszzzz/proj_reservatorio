@@ -41,7 +41,7 @@
         {% csrf_token %}
         <div class="field email-field">Nome</div>
         <div class="input-field">
-          {{ form_usuario.nome }}
+          {{ form_usuario.username }}
         </div>
         <div class="field email-field">E-mail</div>
         <div class="input-field">
@@ -57,7 +57,7 @@
         </div>
         <div class="field email-field">Senha</div>
         <div class="input-field">
-          {{ form_usuario.senha }}
+          {{ form_usuario.password }}
         </div>
         <div class="field button-field input-field">
             <input type="submit" value="Cadastrar" />

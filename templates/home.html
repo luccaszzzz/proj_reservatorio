@@ -18,8 +18,11 @@
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#servicos">Serviços</a></li>
           <li><a href="#suporte">Suporte e Instalação</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'perfil2' %}">Olá, {{ user.username }}</a></li>
+          {% else %}
           <li><a href="{% url 'login' %}">Entrar</a></li>
-          <!-- <li><a href="#">Olá, Maria</a></li> -->
+          {% endif %}
         </ul>
       </nav>
     </header>
