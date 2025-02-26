@@ -67,13 +67,10 @@ def logar(request):
     else:
         return render(request, 'login.html')
 
-
 def sair(request):
     logout(request)
     return redirect('login')
 
-
-@login_required(login_url='login')
 def home(request):
     return render(request, 'home.html')
 
