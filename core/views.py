@@ -5,7 +5,6 @@ from django.core.exceptions import ObjectDoesNotExist # Importa uma exceção pa
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-
 from django.contrib.auth.hashers import make_password
 import requests
 import json
@@ -15,8 +14,10 @@ from django.http import HttpResponse, JsonResponse
 
 def listar_usuarios_express(request):
     requisicao = requests.post('http://127.0.0.1:3000/usuarios/list')
-    todos = json.loads(requisicao.content)
-    return JsonResponse(todos, safe=False)
+    usuarios = json.loads(requisicao.content)
+    return render(request, 'usuarios/listar_usuarios.html', context={
+        'listagem_usuarios': usuarios
+    })
 
 # Cadastro de usuario comum no express
 @login_required(login_url='login')
@@ -117,6 +118,16 @@ def cadastrar_usuario(request):
         password = request.POST.get('password')
         password2 = request.POST.get('password2')
         usuario = Usuario.objects.create_user(username=username, email=email, cpf=cpf, celular=celular, password=password)
+
+        # Cadastro no Express
+        usuario_express = {
+            'nome': username,
+            'email': email,
+            'password': password,
+            'cpf': cpf,
+            'telefone': celular
+        }
+        requisicao = requests.post('http://127.0.0.1:3000/signup', data=json.dumps(usuario_express), headers={'Content-Type': 'application/json'})
         return redirect('login')
     return render(request, 'cadastro.html')
 
@@ -128,15 +139,16 @@ def editar_usuario(request,id):
         form.save()
         return redirect('listar_usuarios')
     contexto = {
-            'form_usuario': form
+            'form_usuario': form,
         }
     return render(request,'usuarios/usuario_cadastrar.html',contexto)
 
 # BASEADO NO VÍDEO DE BRUNO - passo 4 - REMOÇÃO de usuário
-def remover_usuario(request, id):
-    usuario = Usuario.objects.get(pk=id)
+def remover_usuario(request, username, id):
+    usuario = Usuario.objects.get(username=username)
     usuario.delete()
-    return redirect('listar_usuarios')
+    requisicao = requests.post('http://127.0.0.1:3000/usuarios/remove', data=json.dumps({'idusuario': id}), headers={'Content-Type': 'application/json'})
+    return redirect('listar_usuarios_express')
 
 # BASEADO NO VÍDEO DE BRUNO - passo 1 -LISTAGEM de RESERVATÓRIO
 def listar_reservatorios(request):  

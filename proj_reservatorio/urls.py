@@ -19,9 +19,9 @@ urlpatterns = [
 
     # CRUD DE USUÁRIOS 
     path('cadastrar_usuario/', cadastrar_usuario_express, name='cadastrar_usuario'), # BASEADO NO VÍDEO DE BRUNO - passo 2 - ADICIONEI a ROTA "cadastrar_usuario"
-    path('listar_usuarios/', listar_usuarios, name='listar_usuarios'), # BASEADO NO VÍDEO DE BRUNO - passo 2 - CADASTRAR USUARIO - adicionei o "listar_usuarios"
+    # path('listar_usuarios/', listar_usuarios, name='listar_usuarios'), # BASEADO NO VÍDEO DE BRUNO - passo 2 - CADASTRAR USUARIO - adicionei o "listar_usuarios"
     path('usuario_editar/<int:id>/', editar_usuario, name='editar_usuario'), # BASEADO NO VÍDEO DE BRUNO - passo 3 - EDIÇÃO de usuário
-    path('usuario_remover/<int:id>', remover_usuario, name= 'remover_usuario' ),  # BASEADO NO VÍDEO DE BRUNO - passo 4 - REMOÇÃO de usuário
+    path('usuario_remover/<str:username>/<int:id>', remover_usuario, name= 'remover_usuario' ),  # BASEADO NO VÍDEO DE BRUNO - passo 4 - REMOÇÃO de usuário
 
     # CRUD DE RESERVATÓRIO
     path('listar_reservatorios/', listar_reservatorios, name='listar_reservatorios'), # BASEADO NO VÍDEO DE BRUNO - passo 1 - LISTAGEM de RESERVATÓRIO
