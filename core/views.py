@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404 # adicionado di
 from  .forms import UsuarioForm, ReservatorioForm, MonitoramentoForm # adicionado dia 13/02 pela vídeo aula de Bruno passo 2 CADASTRAR USUÁRIO
 from .models import Usuario, Reservatorio, Monitoramento # adicionado dia 14/02 pela vídeo aula de Bruno passo 1 LISTAGEM DE RESERVATÓRIO
 from django.core.exceptions import ObjectDoesNotExist # Importa uma exceção para caso um objeto não foi encontrado no banco de dados
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout,get_user_model
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib.auth.hashers import make_password
+from django.contrib.sessions.models import Session
 import requests
 import json
 from django.http import HttpResponse, JsonResponse
@@ -253,6 +254,30 @@ def remover_monitoramento(request,id):
     monitoramento = get_object_or_404(Monitoramento, pk=id) # Usa get_object_or_404 para lidar com o erro
     monitoramento.delete()
     return redirect('listar_monitoramentos')
+
+def relatorio_usuarios_logados(request):
+    # Consulta todas as sessões ativas
+    sessions = Session.objects.all()
+    
+    usuarios_logados = []
+    for session in sessions:
+        # Pega o ID do usuário armazenado na sessão
+        user_id = session.get_decoded().get('_auth_user_id')
+        
+        if user_id:
+            try:
+                user = Usuario.objects.get(id=user_id)
+                if user.is_authenticated:
+                    usuarios_logados.append(user)
+            except User.DoesNotExist:
+                continue
+    
+    contexto = {
+        'usuarios_logados': usuarios_logados,
+        'quantidade_usuarios_logados': len(usuarios_logados)
+    }
+    
+    return render(request, 'relatorio_usuarios_logados.html', contexto)
 
 # @login_required  # Garante que apenas usuários logados possam acessar essa view
 # def cadastrar_reservatorio(request):

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from core.views import home, perfil, perfil2, gestor, dashboard, detalhe_reservatorio, cadastrar_usuario, listar_usuarios, editar_usuario, remover_usuario # BASEADO NO VÍDEO DE BRUNO - passo 1 - ADICIONEI "cadastrar_usuario" e "listar_usuarios" e "editar_usuario" e "remover_usuario"
 from core.views import listar_reservatorios, cadastrar_reservatorio, editar_reservatorio, logar, sair, remover_reservatorio # BASEADO NO VÍDEO DE BRUNO - passo 1 - ADICIONEI "listar_reservatorio", "cadastrar_reservatorio" e "editar_reservatorio"
-from core.views import listar_monitoramentos, erro_permissao, cadastrar_monitoramento, editar_monitoramento,remover_monitoramento, atualizar_usuario_express, listar_usuarios_express, excluir_usuario_express, cadastrar_usuario_express # BASEADO NO VÍDEO DE BRUNO - passo 1 - ADICIONEI "listar_monitoramento", "cadastrar_monitoramento" e "editar_monitoramento" e "remover_monitoramento"
+from core.views import listar_monitoramentos, erro_permissao, cadastrar_monitoramento, editar_monitoramento,remover_monitoramento, atualizar_usuario_express, listar_usuarios_express, excluir_usuario_express, cadastrar_usuario_express, relatorio_usuarios_logados # BASEADO NO VÍDEO DE BRUNO - passo 1 - ADICIONEI "listar_monitoramento", "cadastrar_monitoramento" e "editar_monitoramento" e "remover_monitoramento"
 
 
 urlpatterns = [
@@ -16,6 +16,7 @@ urlpatterns = [
     path('gestor/', gestor, name="gestor"),
     path('dashboard/', dashboard, name="dashboard"),
     path('erro_permissao/', erro_permissao, name="erro_permissao"),
+    path('relatorio/usuarios_logados/', relatorio_usuarios_logados, name='relatorio_usuarios_logados'),
 
     # CRUD DE USUÁRIOS 
     path('cadastrar_usuario/', cadastrar_usuario_express, name='cadastrar_usuario'), # BASEADO NO VÍDEO DE BRUNO - passo 2 - ADICIONEI a ROTA "cadastrar_usuario"
