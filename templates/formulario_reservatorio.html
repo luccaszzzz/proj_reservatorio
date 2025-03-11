@@ -1,0 +1,37 @@
+<form method="GET" action="{% url 'listar_reservatorios' %}">
+    <input type="text" name="search" placeholder="Buscar reservatório" value="{{ search_query }}">
+    <button type="submit">Buscar</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Periodicidade</th>
+            <th>Tempo</th>
+            <th>Usuário</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reservatorio in listagem_reservatorios %}
+        <tr>
+            <td>{{ reservatorio.codigo }}</td>
+            <td>{{ reservatorio.get_periodicidade_display }}</td>
+            <td>{{ reservatorio.tempo }} min</td>
+            <td>{{ reservatorio.usuario.username }}</td>
+            <td>
+                <a href="{% url 'detalhe_reservatorio' reservatorio.id %}">Detalhes</a>
+                <a href="{% url 'editar_reservatorio' reservatorio.id %}">Editar</a>
+                <a href="{% url 'remover_reservatorio' reservatorio.id %}" onclick="return confirm('Tem certeza que deseja remover?');">Remover</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Nenhum reservatório encontrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'cadastrar_reservatorio' %}">Cadastrar novo reservatório</a>
